@@ -21,9 +21,10 @@ Concat+Conv2d fused all-in-one CUDA kernel extension for Pytorch
 ## Limitations
 1. Forward only
 2. Maximum 16 Tensors for the input list
-3. NCHW layout
-4. Hardcoded zero padding (padding=1)
-5. Optimized for small batch size
+4. NCHW layout
+5. Channel size >= 4 for each input Tensor in the list
+6. Hardcoded zero padding (padding=1 for Conv3x3)
+7. Optimized for small batch size
 
 ## TODO List
 1. Backward path
@@ -38,4 +39,11 @@ Concat+Conv2d fused all-in-one CUDA kernel extension for Pytorch
 python setup.py install
 
 python test.py cuda
+~~~
+
+### Result on Titan V
+- Test target: [**HarDNet85**](https://github.com/PingoLH/CenterNet-HarDNet) with 512x512 input size 
+~~~
+ Torch Conv:  6.489803947205326 ms
+    CatConv:  5.862883790766858 ms  lantency reduction: 9.660078509897597 %
 ~~~
