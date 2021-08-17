@@ -25,6 +25,7 @@ Concat+Conv2d fused all-in-one CUDA kernel extension for Pytorch
 5. Channel size >= 4 for each input Tensor in the list
 6. Hardcoded zero padding (padding=1 for Conv3x3)
 7. Optimized for small batch size
+8. Optimized on Volta
 
 ## TODO List
 1. Backward path
@@ -47,3 +48,5 @@ python test.py cuda
  Torch Conv:  6.489803947205326 ms
     CatConv:  5.862883790766858 ms  lantency reduction: 9.660078509897597 %
 ~~~
+
+- Applied on [FCHarDNet](https://github.com/PingoLH/FCHarDNet) gives a signifcant speed up (70 fps -> 99 fps)
